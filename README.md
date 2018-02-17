@@ -7,6 +7,9 @@ Frontend can be found [here](https://github.com/gothbarbie/fullstack-client).
 
 The backend runs with express and mongodb.
 
+## Public URL
+https://sleepy-garden-76711.herokuapp.com/
+
 
 ## Author
 Hanna Söderström
