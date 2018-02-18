@@ -1,8 +1,9 @@
 # Fullstack
 
-This repository is part of a learning project for setting up a fullstack project (backend and frontend). 
+This repository is part of a learning project for setting up a fullstack project (backend and frontend).
 
-The backend runs with express and mongodb.
+- The backend runs with express and mongodb.
+- The frontend runs with React (`create-react-app`).
 
 ## Public URL
 
