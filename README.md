@@ -15,6 +15,12 @@ https://sleepy-garden-76711.herokuapp.com/
 - `/api/current_user` - Current user
 - `/api/logout` - Log out
 
+## Dev
+
+Start api-server and react-server locally: 
+
+```npm run dev```
+
 ## Author
 
 Hanna Söderström
