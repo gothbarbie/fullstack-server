@@ -21,5 +21,5 @@ ReactDOM.render(
   document.querySelector('#root')
 )
 
-console.log('stripe', process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY)
-console.log('Environment ', process.env.NODE_ENV)
+if (process.env.NODE_ENV === 'development') console.log('Environment:',process.env.NODE_ENV)
+
