@@ -5,6 +5,14 @@ This repository is part of a learning project for setting up a fullstack project
 - The backend runs with express and mongodb.
 - The frontend runs with React (`create-react-app`).
 
+## Dependencies
+
+This repository requires a set of keys for use of MongoDB at mLab.com and Stripe (stripe.com). These are not part of the repository for security reasons.
+
+`.env.development`
+
+`.env.production`
+
 ## Public URL
 
 https://sleepy-garden-76711.herokuapp.com/
