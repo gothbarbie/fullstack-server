@@ -11,9 +11,11 @@ https://sleepy-garden-76711.herokuapp.com/
 
 ### Routes
 
-- `/auth/google` - Authorization
-- `/api/current_user` - Current user
-- `/api/logout` - Log out
+| URL                | Description         |
+|--------------------|---------------------|
+| `/auth/google`     | Authorization       |
+| `/api/current_user`| Current user        |
+| `/api/logout`      | Logout              |
 
 ## Dev
 
