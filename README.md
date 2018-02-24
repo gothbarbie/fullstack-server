@@ -13,6 +13,8 @@ This repository requires a set of keys for use of MongoDB at mLab.com and Stripe
 
 `.env.production`
 
+We use sendgrid as email-provider.
+
 ## Public URL
 
 https://sleepy-garden-76711.herokuapp.com/
