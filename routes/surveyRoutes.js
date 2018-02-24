@@ -12,7 +12,7 @@ module.exports = app => {
     const { title, subject, body, recipients } = req.body
 
     const survey = new Survey({
-      title, 
+      title,
       subject,
       body,
       recipients: recipients.split(',').map(email => ({ email: email.trim() })),
@@ -20,8 +20,21 @@ module.exports = app => {
       dateSent: Date.now()
     })
 
-    // Send email
-    const mailer = new Mailer(survey, surveyTemplate(survey))
-    await mailer.send()
+    try {
+      // Send email
+      const mailer = new Mailer(survey, surveyTemplate(survey))
+      await mailer.send()
+
+      // Save survey
+      await survey.save()
+
+      // Withdraw credit
+      req.user.credits -= 1
+      const user = await req.user.save()
+
+      res.send(user)
+    } catch (error) {
+      res.status(422).send(error)
+    }
   })
 }
