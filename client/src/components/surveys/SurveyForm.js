@@ -1,37 +1,38 @@
 import React, { Component } from 'react'
 import { reduxForm, Field } from 'redux-form'
 import _ from 'lodash'
+import { Link } from 'react-router-dom'
 
 import SurveyField from './SurveyField'
-
-const FIELDS = [
-  { label: 'Survey Title', name: 'title' },
-  { label: 'Subject Line', name: 'subject' },
-  { label: 'Email Body', name: 'body' },
-  { label: 'Recipient List', name: 'emails' },
-]
+import validateEmails from '../../utils/validateEmails'
+import formFields from './formFields'
 
 class SurveyForm extends Component {
   renderFields() {
-    return _.map(FIELDS, ({ label, name }) => {
+    return _.map(formFields, ({ label, name }) => {
       return (
-        <Field 
-          component={SurveyField} 
-          type="text" 
-          label={label} 
-          name={name} 
-          key={name} />
+        <Field
+          component={SurveyField}
+          type="text"
+          label={label}
+          name={name}
+          key={name}
+        />
       )
     })
   }
 
   render() {
+    const { handleSubmit, onSurveySubmit } = this.props
     return (
       <div>
-        <form onSubmit={this.props.handleSubmit(values => console.log(values))}>
+        <form onSubmit={handleSubmit(onSurveySubmit)}>
           {this.renderFields()}
-          <button className="btn" type="submit">
-            Submit
+          <Link to="/surveys" className="red btn-flat white-text">
+            Cancel
+          </Link>
+          <button className="teal btn-flat right white-text" type="submit">
+            Next
           </button>
         </form>
       </div>
@@ -39,7 +40,22 @@ class SurveyForm extends Component {
   }
 }
 
-export default reduxForm({
-  form: 'surveyForm'
-})(SurveyForm)
+function validate(values) {
+  const errors = {}
 
+  _.each(formFields, ({ name }) => {
+    if (!values[name]) {
+      errors[name] = 'This field must be filled.'
+    }
+  })
+
+  errors.emails = validateEmails(values.emails || '')
+
+  return errors
+}
+
+export default reduxForm({
+  validate,
+  form: 'surveyForm',
+  destroyOnUnmount: false
+})(SurveyForm)
