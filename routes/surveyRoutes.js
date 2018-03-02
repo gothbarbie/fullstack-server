@@ -22,10 +22,10 @@ module.exports = app => {
     res.send('Thank you for your feedback!')
   })
 
-  app.post('/api/surveys/webhooks', (req, res) => {
+  app.post('/api/surveys/webhooks', async (req, res) => {
     const p = new Path('/api/surveys/:surveyId/:choice')
 
-    _.chain(req.body)
+    const result = await _.chain(req.body)
       .map(({ email, url }) => {
         const match = p.test(new URL(url).pathname)
         if (match) {
@@ -49,7 +49,7 @@ module.exports = app => {
 
       })
       .value()
-
+    console.log(result)
 
     res.send({})
   })
